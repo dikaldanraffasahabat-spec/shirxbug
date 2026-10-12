@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0e0e11">
+<title>Shix — WA Action Suite</title>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="brand"><i data-lucide="hexagon"></i> SHIX</div>
+    <div class="actions">
+      <div class="ic" id="notifBtn"><i data-lucide="bell"></i><span class="dot"></span></div>
+      <div class="ic" id="menuBtn"><i data-lucide="more-vertical"></i></div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- BERANDA -->
+    <div class="page active" id="page-beranda">
+      <div class="announce">
+        <i data-lucide="megaphone" class="an-ic"></i>
+        <div class="an-text">🔥 Update v2.3 — Ban User & Ban Group sekarang pakai Mass Report (sender pribadi). Berita live dari Kompas, Detik, CNN!</div>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">S</div>
+        <div class="info">
+          <h2>ShiraaDev <i data-lucide="badge-check" class="verified"></i></h2>
+          <p>Sender Pribadi: 1 &nbsp;•&nbsp; Aktif s/d 30 Des 2099</p>
+        </div>
+        <div class="badge-premium">PREMIUM</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="val" id="statSender">1</div><div class="lbl">Sender</div></div>
+        <div class="stat"><div class="val" id="statHit">0</div><div class="lbl">Hit Hari Ini</div></div>
+        <div class="stat"><div class="val">∞</div><div class="lbl">Global</div></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="zap"></i></div> Quick Action</div>
+      <div class="quick-grid">
+        <div class="quick-item" data-goto="bug"><div class="q-ic"><i data-lucide="bug"></i></div><p>Bug WA</p></div>
+        <div class="quick-item" data-goto="rat"><div class="q-ic"><i data-lucide="rat"></i></div><p>Rat</p></div>
+        <div class="quick-item" data-goto="tools"><div class="q-ic"><i data-lucide="wrench"></i></div><p>Tools</p></div>
+        <div class="quick-item" data-goto="tools"><div class="q-ic"><i data-lucide="image"></i></div><p>Maker</p></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="image"></i></div> Banner</div>
+      <div class="banner">
+        <img src="https://i.imgur.com/a4DP5eQ.jpeg" alt="Banner">
+        <div class="banner-text"><h1>WA ACTION SUITE</h1><span>v2.3</span></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="flame"></i></div> Trending Bug</div>
+      <div class="trend-scroll">
+        <div class="trend-chip" data-trend="delay-hard"><i data-lucide="timer"></i><span>Delay Hard</span><span class="hot">HOT</span></div>
+        <div class="trend-chip" data-trend="stuck-logo"><i data-lucide="loader"></i><span>Stuck Logo</span></div>
+        <div class="trend-chip" data-trend="hard-click"><i data-lucide="mouse-pointer-click"></i><span>Hard Click</span></div>
+        <div class="trend-chip" data-trend="blank-ui"><i data-lucide="layout-panel-top"></i><span>Blank UI</span></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="newspaper"></i></div> Berita Indonesia <span class="more" id="refreshNews">Refresh</span></div>
+      <div class="news-scroll" id="newsScroll">
+        <div class="news-card"><div class="n-img"><i data-lucide="loader-2"></i></div><div class="n-body"><div class="n-tag">LOADING</div><div class="n-title">Memuat berita...</div></div></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="trophy"></i></div> Top Send Bug</div>
+      <div class="card" style="padding:12px">
+        <div class="lb-row top1"><div class="lb-rank">1</div><div class="lb-name"><i data-lucide="crown"></i> ShiraaDev</div><div class="lb-val">1,284</div></div>
+        <div class="lb-row top2"><div class="lb-rank">2</div><div class="lb-name">Zer0x07</div><div class="lb-val">987</div></div>
+        <div class="lb-row top3"><div class="lb-rank">3</div><div class="lb-name">NyxRoot</div><div class="lb-val">742</div></div>
+        <div class="lb-row"><div class="lb-rank">4</div><div class="lb-name">Viper</div><div class="lb-val">611</div></div>
+        <div class="lb-row"><div class="lb-rank">5</div><div class="lb-name">CipherX</div><div class="lb-val">523</div></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="server"></i></div> Status Server</div>
+      <div class="status-grid">
+        <div class="status-item"><div class="st-dot"></div><div class="st-body"><div class="st-name">Engine</div><div class="st-val">Online • 24ms</div></div></div>
+        <div class="status-item"><div class="st-dot"></div><div class="st-body"><div class="st-name">Sender Pool</div><div class="st-val" id="senderPool">0 aktif</div></div></div>
+        <div class="status-item"><div class="st-dot warn"></div><div class="st-body"><div class="st-name">Queue</div><div class="st-val">3 pending</div></div></div>
+        <div class="status-item"><div class="st-dot"></div><div class="st-body"><div class="st-name">Database</div><div class="st-val">Normal</div></div></div>
+      </div>
+
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="messages-square"></i></div> Global Chat</div>
+      <div class="chat-wrap">
+        <div class="chat-head"><span class="c-live"></span><h4>#general</h4><span class="c-count" id="chatCount">248 online</span></div>
+        <div class="chat-body" id="chatBody"></div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Tulis pesan..." maxlength="200">
+          <button id="chatSend"><i data-lucide="send"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUG -->
+    <div class="page" id="page-bug">
+      <div class="cat-scroll" id="catScroll">
+        <div class="cat-chip active" data-cat="bug-user"><i data-lucide="user-x"></i><span>Bug User</span></div>
+        <div class="cat-chip" data-cat="bug-group"><i data-lucide="users"></i><span>Bug Group</span></div>
+        <div class="cat-chip" data-cat="ban-user"><i data-lucide="user-minus"></i><span>Ban User</span></div>
+        <div class="cat-chip" data-cat="ban-group"><i data-lucide="shield-ban"></i><span>Ban Group</span></div>
+        <div class="cat-chip" data-cat="log"><i data-lucide="scroll-text"></i><span>Log Kiriman</span></div>
+        <div class="cat-chip" data-cat="pair"><i data-lucide="link"></i><span>Pairing Sender</span></div>
+      </div>
+
+      <!-- BUG USER -->
+      <div class="cat-page active" id="cat-bug-user">
+        <div class="card">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="crosshair"></i></div> Target User</div>
+          <div class="input-wrap"><i data-lucide="smartphone" class="input-icon"></i><input type="tel" id="nomorUser" placeholder="628xxxxxxxxxx" maxlength="15" inputmode="numeric" autocomplete="off"></div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="bug"></i></div> Pilih Bug</div>
+          <div class="bug-grid" id="bugGridUser">
+            <div class="bug-card active" data-bug="delay-invis"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="eye-off"></i></div><h3>Delay Invis</h3><span class="tag">delay</span></div>
+            <div class="bug-card" data-bug="delay-hard"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="timer"></i></div><h3>Delay Hard</h3><span class="tag">hard</span></div>
+            <div class="bug-card" data-bug="stuck-logo"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="loader"></i></div><h3>Stuck Logo</h3><span class="tag">crash</span></div>
+            <div class="bug-card" data-bug="hard-click"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="mouse-pointer-click"></i></div><h3>Hard Click</h3><span class="tag">freeze</span></div>
+            <div class="bug-card" data-bug="blank-ui"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="layout-panel-top"></i></div><h3>Blank UI</h3><span class="tag">white</span></div>
+            <div class="bug-card" data-bug="blank-message"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="message-square-off"></i></div><h3>Blank Msg</h3><span class="tag">ghost</span></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="arrow-left-right"></i></div> Sender</div>
+          <div class="sender-grid" id="senderGridUser">
+            <div class="sender-card" data-sender="pribadi"><div class="s-icon"><i data-lucide="user"></i></div><h4>Pribadi</h4><p id="pribadiStatus">Check...</p></div>
+            <div class="sender-card active" data-sender="global"><div class="s-icon"><i data-lucide="globe-2"></i></div><h4>Global</h4><p>Online</p></div>
+          </div>
+          <div class="info-limit"><i data-lucide="info"></i> Sisa kirim hari ini: <b id="limitInfo">1 / 1</b></div>
+        </div>
+        <button class="btn" id="kirimBtnUser" style="margin-top:12px"><i data-lucide="send"></i> KIRIM BUG USER</button>
+      </div>
+
+      <!-- BUG GROUP -->
+      <div class="cat-page" id="cat-bug-group">
+        <div class="card">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="link"></i></div> Link / ID Group</div>
+          <div class="input-wrap"><i data-lucide="users" class="input-icon"></i><input type="text" id="groupLink" placeholder="https://chat.whatsapp.com/xxxxx" autocomplete="off"></div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="bug"></i></div> Pilih Bug Group</div>
+          <div class="bug-grid" id="bugGridGroup">
+            <div class="bug-card active" data-bug="gc-delay"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="timer"></i></div><h3>GC Delay</h3><span class="tag">delay</span></div>
+            <div class="bug-card" data-bug="gc-crash"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="zap"></i></div><h3>GC Crash</h3><span class="tag">crash</span></div>
+            <div class="bug-card" data-bug="gc-blank"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="layout-panel-top"></i></div><h3>GC Blank</h3><span class="tag">white</span></div>
+            <div class="bug-card" data-bug="gc-stuck"><div class="badge-check"><i data-lucide="check"></i></div><div class="bug-icon"><i data-lucide="loader"></i></div><h3>GC Stuck</h3><span class="tag">freeze</span></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="arrow-left-right"></i></div> Sender</div>
+          <div class="sender-grid" id="senderGridGroup">
+            <div class="sender-card" data-sender="pribadi"><div class="s-icon"><i data-lucide="user"></i></div><h4>Pribadi</h4><p>Online</p></div>
+            <div class="sender-card active" data-sender="global"><div class="s-icon"><i data-lucide="globe-2"></i></div><h4>Global</h4><p>Online</p></div>
+          </div>
+        </div>
+        <button class="btn" id="kirimBtnGroup" style="margin-top:12px"><i data-lucide="send"></i> KIRIM BUG GROUP</button>
+      </div>
+
+      <!-- BAN USER (MASS REPORT) -->
+      <div class="cat-page" id="cat-ban-user">
+        <div class="card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle" style="background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.3);color:#ef4444"><i data-lucide="alert-triangle"></i></div> Mass Report — Ban User</div>
+          <p style="font-size:11px;color:#6b7280;line-height:1.5;margin-bottom:12px">Sistem ban menggunakan <b style="color:#ef4444">mass report</b> dari akun pribadi. Wajib pakai sender pribadi yang sudah pairing.</p>
+          <div class="input-wrap"><i data-lucide="smartphone" class="input-icon"></i><input type="tel" id="banUserPhone" placeholder="628xxxxxxxxxx" maxlength="15" inputmode="numeric"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="user-check"></i></div> Pilih Sender Pribadi</div>
+          <div id="banUserSenders"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="range-wrap">
+            <label>Jumlah Report <b id="banUserCountVal">20</b></label>
+            <input type="range" id="banUserCount" min="5" max="100" value="20" step="5">
+          </div>
+          <div class="range-wrap">
+            <label>Delay Antar Report <b id="banUserDelayVal">1500ms</b></label>
+            <input type="range" id="banUserDelay" min="500" max="5000" value="1500" step="250">
+          </div>
+        </div>
+
+        <button class="btn danger" id="kirimBtnBanUser" style="margin-top:12px"><i data-lucide="user-minus"></i> EXECUTE MASS REPORT</button>
+      </div>
+
+      <!-- BAN GROUP (MASS REPORT) -->
+      <div class="cat-page" id="cat-ban-group">
+        <div class="card" style="border-color:rgba(239,68,68,0.3)">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle" style="background:rgba(239,68,68,0.12);border-color:rgba(239,68,68,0.3);color:#ef4444"><i data-lucide="alert-triangle"></i></div> Mass Report — Ban Group</div>
+          <p style="font-size:11px;color:#6b7280;line-height:1.5;margin-bottom:12px">Mass report group menggunakan <b style="color:#ef4444">sender pribadi</b>. Target berupa link atau ID group WhatsApp.</p>
+          <div class="input-wrap"><i data-lucide="users" class="input-icon"></i><input type="text" id="banGroupLink" placeholder="https://chat.whatsapp.com/xxxxx"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="user-check"></i></div> Pilih Sender Pribadi</div>
+          <div id="banGroupSenders"></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <div class="range-wrap">
+            <label>Jumlah Report <b id="banGroupCountVal">20</b></label>
+            <input type="range" id="banGroupCount" min="5" max="100" value="20" step="5">
+          </div>
+          <div class="range-wrap">
+            <label>Delay Antar Report <b id="banGroupDelayVal">1500ms</b></label>
+            <input type="range" id="banGroupDelay" min="500" max="5000" value="1500" step="250">
+          </div>
+        </div>
+
+        <button class="btn danger" id="kirimBtnBanGroup" style="margin-top:12px"><i data-lucide="shield-ban"></i> EXECUTE MASS REPORT</button>
+      </div>
+
+      <!-- LOG -->
+      <div class="cat-page" id="cat-log">
+        <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="scroll-text"></i></div> Log Kiriman Bug <span class="more" id="clearLog" style="color:#ef4444">Clear</span></div>
+        <div id="logList"></div>
+      </div>
+
+      <!-- PAIRING -->
+      <div class="cat-page" id="cat-pair">
+        <div class="card">
+          <div class="sec-title" style="margin-top:0"><div class="icon-circle"><i data-lucide="link"></i></div> Pairing Sender Baru</div>
+          <div class="input-wrap"><i data-lucide="smartphone" class="input-icon"></i><input type="tel" id="pairPhoneInput" placeholder="628xxxxxxxxxx" maxlength="15" inputmode="numeric"></div>
+          <button class="btn" id="btnPair" style="margin-top:14px"><i data-lucide="key-round"></i> REQUEST PAIRING CODE</button>
+        </div>
+        <div class="sec-title"><div class="icon-circle"><i data-lucide="database"></i></div> Sender Terdaftar</div>
+        <div id="pairList"></div>
+      </div>
+
+    </div>
+
+    <!-- RAT -->
+    <div class="page" id="page-rat">
+      <div class="card" style="margin-bottom:14px;border-color:rgba(239,68,68,0.3);background:linear-gradient(135deg,rgba(239,68,68,0.08),transparent)">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#ef4444,#b91c1c);display:flex;align-items:center;justify-content:center;color:#fff"><i data-lucide="rat" style="width:22px;height:22px"></i></div>
+          <div><h3 style="font-size:14px;font-weight:800;color:#e5e7eb;letter-spacing:0.5px">Rat Control Panel</h3><p style="font-size:11px;color:#6b7280;margin-top:2px">Remote access & monitoring tools</p></div>
+        </div>
+      </div>
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="wifi"></i></div> Connected Devices</div>
+      <div class="card" style="padding:14px">
+        <div style="display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid #2e2e36;margin-bottom:12px">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);display:flex;align-items:center;justify-content:center;color:#22c55e"><i data-lucide="smartphone" style="width:18px;height:18px"></i></div>
+          <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#e5e7eb">Samsung Galaxy A14</div><div style="font-size:10px;color:#6b7280;margin-top:2px">Android 13 • 62812xxxx • Online</div></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(107,114,128,0.12);border:1px solid rgba(107,114,128,0.3);display:flex;align-items:center;justify-content:center;color:#6b7280"><i data-lucide="smartphone" style="width:18px;height:18px"></i></div>
+          <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#9ca3af">Xiaomi Redmi Note 12</div><div style="font-size:10px;color:#6b7280;margin-top:2px">Android 12 • 62898xxxx • Offline</div></div>
+          <div style="width:8px;height:8px;border-radius:50%;background:#6b7280"></div>
+        </div>
+      </div>
+      <div class="sec-title"><div class="icon-circle"><i data-lucide="terminal"></i></div> Remote Commands</div>
+      <div class="card" style="padding:12px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="camera"></i> Screenshot</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="mic"></i> Record Mic</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="map-pin"></i> Get Location</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="folder"></i> File Manager</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="message-square"></i> Read SMS</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="contact"></i> Contacts</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="bell"></i> Notification</button>
+          <button class="btn sec" style="padding:12px;font-size:11px"><i data-lucide="keypad"></i> Keylog</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOOLS -->
+    <div class="page" id="page-tools">
+      <div class="card" style="margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#a855f7,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff"><i data-lucide="wrench" style="width:22px;height:22px"></i></div>
+          <div><h3 style="font-size:14px;font-weight:800;color:#e5e7eb;letter-spacing:0.5px">Tools Suite</h3><p style="font-size:11px;color:#6b7280;margin-top:2px">Kumpulan utility & automation</p></div>
+        </div>
+      </div>
+      <div class="tool-cat open">
+        <div class="tool-cat-head"><div class="c-ic"><i data-lucide="sparkles"></i></div><div class="c-info"><h4>Maker</h4><p>Bikin gambar, stiker, text & lainnya</p></div><div class="c-arrow"><i data-lucide="chevron-down"></i></div></div>
+        <div class="tool-list">
+          <div class="tool-item" data-tool="sticker"><i data-lucide="sticker"></i><span>Sticker Maker</span></div>
+          <div class="tool-item" data-tool="textimg"><i data-lucide="type"></i><span>Text to Image</span></div>
+          <div class="tool-item" data-tool="qr"><i data-lucide="qr-code"></i><span>QR Generator</span></div>
+          <div class="tool-item" data-tool="meme"><i data-lucide="laugh"></i><span>Meme Maker</span></div>
+          <div class="tool-item" data-tool="cert"><i data-lucide="award"></i><span>Certificate</span></div>
+          <div class="tool-item" data-tool="logo"><i data-lucide="palette"></i><span>Logo Maker</span></div>
+        </div>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-head"><div class="c-ic"><i data-lucide="download"></i></div><div class="c-info"><h4>Downloader</h4><p>Ambil media dari berbagai platform</p></div><div class="c-arrow"><i data-lucide="chevron-down"></i></div></div>
+        <div class="tool-list">
+          <div class="tool-item" data-tool="ytdl"><i data-lucide="youtube"></i><span>YouTube</span></div>
+          <div class="tool-item" data-tool="ttdl"><i data-lucide="music"></i><span>TikTok</span></div>
+          <div class="tool-item" data-tool="igdl"><i data-lucide="instagram"></i><span>Instagram</span></div>
+          <div class="tool-item" data-tool="fbdl"><i data-lucide="facebook"></i><span>Facebook</span></div>
+          <div class="tool-item" data-tool="twdl"><i data-lucide="twitter"></i><span>Twitter/X</span></div>
+          <div class="tool-item" data-tool="spotdl"><i data-lucide="audio-lines"></i><span>Spotify</span></div>
+        </div>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-head"><div class="c-ic"><i data-lucide="plug"></i></div><div class="c-info"><h4>API</h4><p>Endpoint publik & utility</p></div><div class="c-arrow"><i data-lucide="chevron-down"></i></div></div>
+        <div class="tool-list">
+          <div class="tool-item" data-tool="shortlink"><i data-lucide="link"></i><span>Shortlink</span></div>
+          <div class="tool-item" data-tool="ssweb"><i data-lucide="monitor"></i><span>Screenshot Web</span></div>
+          <div class="tool-item" data-tool="ipinfo"><i data-lucide="map-pin"></i><span>IP Info</span></div>
+          <div class="tool-item" data-tool="weather"><i data-lucide="cloud-sun"></i><span>Weather</span></div>
+          <div class="tool-item" data-tool="translate"><i data-lucide="languages"></i><span>Translate</span></div>
+          <div class="tool-item" data-tool="whois"><i data-lucide="search"></i><span>Whois</span></div>
+        </div>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-head"><div class="c-ic"><i data-lucide="settings-2"></i></div><div class="c-info"><h4>Utility</h4><p>Alat bantu harian</p></div><div class="c-arrow"><i data-lucide="chevron-down"></i></div></div>
+        <div class="tool-list">
+          <div class="tool-item" data-tool="bmi"><i data-lucide="activity"></i><span>Kalkulator BMI</span></div>
+          <div class="tool-item" data-tool="pass"><i data-lucide="key"></i><span>Password Gen</span></div>
+          <div class="tool-item" data-tool="b64"><i data-lucide="code"></i><span>Base64</span></div>
+          <div class="tool-item" data-tool="hash"><i data-lucide="hash"></i><span>Hash Tool</span></div>
+          <div class="tool-item" data-tool="uuid"><i data-lucide="fingerprint"></i><span>UUID Gen</span></div>
+          <div class="tool-item" data-tool="timer"><i data-lucide="alarm-clock"></i><span>Timer</span></div>
+        </div>
+      </div>
+      <div class="tool-cat">
+        <div class="tool-cat-head"><div class="c-ic"><i data-lucide="shield-check"></i></div><div class="c-info"><h4>Security</h4><p>Cek & analisis keamanan</p></div><div class="c-arrow"><i data-lucide="chevron-down"></i></div></div>
+        <div class="tool-list">
+          <div class="tool-item" data-tool="leak"><i data-lucide="droplets"></i><span>Cek Leak</span></div>
+          <div class="tool-item" data-tool="domain"><i data-lucide="globe"></i><span>Cek Domain</span></div>
+          <div class="tool-item" data-tool="ports"><i data-lucide="network"></i><span>Port Scan</span></div>
+          <div class="tool-item" data-tool="hdr"><i data-lucide="file-search"></i><span>HTTP Header</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-nav">
+    <div class="nav-item active" data-page="beranda"><i data-lucide="home"></i><span>Beranda</span></div>
+    <div class="nav-item" data-page="bug"><i data-lucide="bug"></i><span>Bug</span></div>
+    <div class="nav-item" data-page="rat"><i data-lucide="rat"></i><span>Rat</span></div>
+    <div class="nav-item" data-page="tools"><i data-lucide="wrench"></i><span>Tools</span></div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <div class="modal-head"><h3 id="modalTitle">Info</h3><div class="x" id="modalClose"><i data-lucide="x"></i></div></div>
+      <div id="modalBody" style="font-size:12px;color:#c9d4e3;line-height:1.6"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="countModal">
+    <div class="modal-card count-modal">
+      <div class="c-icon-big"><i data-lucide="rocket"></i></div>
+      <h3>Mengirim Bug</h3>
+      <div class="c-target">Target: <b id="countTarget">-</b></div>
+      <div class="c-num" id="countNum">3</div>
+      <div class="c-status" id="countStatus"><i data-lucide="loader-2"></i> Menghubungkan engine...</div>
+    </div>
+  </div>
+
+  <div class="modal" id="successModal">
+    <div class="modal-card count-modal success-modal">
+      <div class="c-icon-big"><i data-lucide="check"></i></div>
+      <h3>Bug Terkirim!</h3>
+      <p style="font-size:12px;color:#c9d4e3;margin-top:4px">Payload berhasil dieksekusi</p>
+      <div class="c-detail">
+        <div class="row"><span>Target</span><span id="sucTarget">-</span></div>
+        <div class="row"><span>Bug</span><span id="sucBug">-</span></div>
+        <div class="row"><span>Sender</span><span id="sucSender">-</span></div>
+        <div class="row"><span>Status</span><span style="color:#22c55e">200 OK</span></div>
+      </div>
+      <button class="btn" style="margin-top:16px" id="sucClose"><i data-lucide="check"></i> Selesai</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+lucide.createIcons();
+
+/* ANTI ZOOM */
+let lastTouch = 0;
+document.addEventListener('touchend', (e) => {
+  const now = Date.now();
+  if (now - lastTouch <= 300) e.preventDefault();
+  lastTouch = now;
+}, { passive: false });
+['gesturestart','gesturechange','gestureend'].forEach(ev => document.addEventListener(ev, e => e.preventDefault()));
+document.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+document.addEventListener('keydown', e => {
+  if ((e.ctrlKey || e.metaKey) && ['+','-','=','0'].includes(e.key)) e.preventDefault();
+});
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+const state = {
+  page: 'beranda',
+  cat: 'bug-user',
+  sessionPhone: localStorage.getItem('sessionPhone') || '',
+  hitCount: parseInt(localStorage.getItem('hitCount') || '0', 10),
+  logs: JSON.parse(localStorage.getItem('bugLogs') || '[]'),
+  sessions: [],
+  banUserSender: null,
+  banGroupSender: null
+};
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+
+function toast(msg, ms = 2200) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t.__t);
+  t.__t = setTimeout(() => t.classList.remove('show'), ms);
+}
+
+function openModal(title, html) {
+  $('#modalTitle').textContent = title;
+  $('#modalBody').innerHTML = html;
+  $('#modal').classList.add('show');
+  lucide.createIcons();
+}
+$('#modalClose').onclick = () => $('#modal').classList.remove('show');
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') $('#modal').classList.remove('show'); });
+
+function showCount(target) {
+  $('#countTarget').textContent = target;
+  $('#countNum').textContent = '3';
+  $('#countStatus').innerHTML = '<i data-lucide="loader-2"></i> Menghubungkan engine...';
+  $('#countModal').classList.add('show');
+  lucide.createIcons();
+}
+function updateCount(num) {
+  const el = $('#countNum');
+  el.textContent = num;
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = 'countPulse 0.9s ease-in-out';
+  if (num === 2) $('#countStatus').innerHTML = '<i data-lucide="loader-2"></i> Menyiapkan payload...';
+  if (num === 1) $('#countStatus').innerHTML = '<i data-lucide="loader-2"></i> Mengirim ke target...';
+  lucide.createIcons();
+}
+function hideCount() { $('#countModal').classList.remove('show'); }
+
+function showSuccess(target, bug, sender) {
+  $('#sucTarget').textContent = target;
+  $('#sucBug').textContent = (bug || '').toUpperCase().replace(/-/g, ' ');
+  $('#sucSender').textContent = sender.charAt(0).toUpperCase() + sender.slice(1);
+  $('#successModal').classList.add('show');
+  lucide.createIcons();
+}
+$('#sucClose').onclick = () => $('#successModal').classList.remove('show');
+
+function go(page) {
+  state.page = page;
+  $$('.page').forEach(p => p.classList.remove('active'));
+  $(`#page-${page}`).classList.add('active');
+  $$('.nav-item').forEach(n => n.classList.toggle('active', n.dataset.page === page));
+  document.querySelector('.content').scrollTop = 0;
+}
+$$('.nav-item').forEach(n => n.addEventListener('click', () => go(n.dataset.page)));
+$$('.quick-item').forEach(q => q.addEventListener('click', () => go(q.dataset.goto)));
+
+function switchCat(cat) {
+  state.cat = cat;
+  $$('.cat-chip').forEach(c => c.classList.toggle('active', c.dataset.cat === cat));
+  $$('.cat-page').forEach(p => p.classList.remove('active'));
+  $(`#cat-${cat}`).classList.add('active');
+}
+$$('.cat-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    switchCat(chip.dataset.cat);
+    chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  });
+});
+
+function updateStats() {
+  $('#statHit').textContent = state.hitCount;
+  localStorage.setItem('hitCount', String(state.hitCount));
+}
+updateStats();
+
+async function api(url, method = 'GET', body) {
+  try {
+    const r = await fetch(url, {
+      method,
+      headers: { 'Content-Type': 'application/json' },
+      body: body ? JSON.stringify(body) : undefined
+    });
+    return await r.json();
+  } catch (e) { return { ok: false, err: e.message }; }
+}
+
+/* BERITA INDONESIA */
+async function loadNews() {
+  const el = $('#newsScroll');
+  el.innerHTML = `<div class="news-card"><div class="n-img"><i data-lucide="loader-2"></i></div><div class="n-body"><div class="n-tag">LOADING</div><div class="n-title">Memuat berita...</div></div></div>`;
+  lucide.createIcons();
+  const r = await api('/api/news?limit=12');
+  if (!r.ok || !r.news || r.news.length === 0) {
+    el.innerHTML = `<div class="news-card"><div class="n-img"><i data-lucide="newspaper"></i></div><div class="n-body"><div class="n-tag">ERROR</div><div class="n-title">Gagal memuat berita</div></div></div>`;
+    lucide.createIcons();
+    return;
+  }
+  el.innerHTML = r.news.map((n, i) => `
+    <div class="news-card" data-news-idx="${i}">
+      <div class="n-img">${n.image ? `<img src="${n.image}" onerror="this.parentNode.innerHTML='<i data-lucide=\\'newspaper\\'></i>'">` : '<i data-lucide="newspaper"></i>'}</div>
+      <div class="n-body">
+        <div class="n-tag">${n.source}</div>
+        <div class="n-title">${n.title}</div>
+        <div class="n-meta"><i data-lucide="clock"></i> ${timeAgo(n.date)}</div>
+      </div>
+    </div>
+  `).join('');
+  el.querySelectorAll('.news-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const idx = parseInt(card.dataset.newsIdx, 10);
+      const item = r.news[idx];
+      if (!item) return;
+      openModal('Berita Indonesia', `
+        <div class="n-tag" style="margin-bottom:8px">${item.source}</div>
+        <p style="font-size:13px;font-weight:800;color:#e5e7eb;margin-bottom:10px;line-height:1.4">${item.title}</p>
+        <p style="font-size:11px;color:#6b7280;line-height:1.6;margin-bottom:14px">${item.desc || ''}</p>
+        <a href="${item.link}" target="_blank" rel="noopener" class="btn sec" style="text-decoration:none;margin-bottom:8px">
+          <i data-lucide="external-link"></i> Baca Selengkapnya
+        </a>
+        <button class="btn sec" onclick="document.getElementById('modal').classList.remove('show')">
+          <i data-lucide="x"></i> Tutup
+        </button>
+      `);
+    });
+  });
+  lucide.createIcons();
+}
+function timeAgo(d) {
+  const diff = (Date.now() - new Date(d).getTime()) / 1000;
+  if (diff < 60) return 'baru saja';
+  if (diff < 3600) return `${Math.floor(diff/60)} mnt lalu`;
+  if (diff < 86400) return `${Math.floor(diff/3600)} jam lalu`;
+  return `${Math.floor(diff/86400)} hari lalu`;
+}
+$('#refreshNews').onclick = () => { loadNews(); toast('Refresh berita'); };
+loadNews();
+
+/* TOOLS */
+$$('.tool-cat-head').forEach(h => h.addEventListener('click', () => h.parentElement.classList.toggle('open')));
+$$('.tool-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const name = item.querySelector('span').textContent;
+    openModal(name, `
+      <p style="margin-bottom:10px">Tool <b style="color:#a855f7">${name}</b> siap dipakai.</p>
+      <p style="color:#6b7280;font-size:11px">Endpoint: <code style="background:#0e0e11;padding:2px 6px;border-radius:4px;color:#a855f7">/api/tools/${item.dataset.tool}</code></p>
+      <button class="btn sec" style="margin-top:14px" onclick="document.getElementById('modal').classList.remove('show')"><i data-lucide="x"></i> Tutup</button>
+    `);
+  });
+});
+
+/* TRENDING */
+$$('.trend-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    go('bug');
+    switchCat('bug-user');
+    $$('#bugGridUser .bug-card').forEach(c => c.classList.toggle('active', c.dataset.bug === chip.dataset.trend));
+    toast(`Bug: ${chip.dataset.trend}`);
+  });
+});
+
+/* CHAT */
+const chatColors = ['#a855f7','#ef4444','#22c55e','#3b82f6','#fbbf24','#ec4899','#06b6d4','#f97316'];
+function colorFromName(name) {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = name.charCodeAt(i) + ((h << 5) - h);
+  return chatColors[Math.abs(h) % chatColors.length];
+}
+function renderChatMessage(msg) {
+  const el = document.createElement('div');
+  el.className = 'chat-msg';
+  const initial = msg.name.charAt(0).toUpperCase();
+  const color = msg.isOwner ? '#a855f7' : colorFromName(msg.name);
+  el.innerHTML = `
+    <div class="m-av" style="background:${color}">${initial}</div>
+    <div class="m-body">
+      <div class="m-name" style="color:${color}">
+        ${msg.name}
+        ${msg.isOwner ? '<i data-lucide="badge-check" style="width:11px;height:11px;color:#22c55e"></i>' : ''}
+        <span class="m-time">${msg.time}</span>
+      </div>
+      <div class="m-text">${msg.text}</div>
+    </div>`;
+  return el;
+}
+(function initChat() {
+  const body = $('#chatBody');
+  const seed = [
+    { name: 'Zer0x07', text: 'Delay hard works banget 🔥', time: '2m' },
+    { name: 'NyxRoot', text: 'Mass report sekarang pakai sender pribadi ya', time: '5m' },
+    { name: 'Viper', text: 'Ban user gua coba sukses', time: '8m' },
+    { name: 'ShiraaDev', text: 'Update lagi minggu depan, stay tuned', time: '15m', isOwner: true },
+  ];
+  seed.forEach(m => body.appendChild(renderChatMessage(m)));
+  body.scrollTop = body.scrollHeight;
+  const incoming = [
+    { name: 'SilentX', text: 'Baru join, mantap ni app' },
+    { name: 'ByteWorm', text: 'Berita indo nya update terus 👍' },
+    { name: 'R3dL0tus', text: 'Admin online kah?' },
+  ];
+  let idx = 0;
+  setInterval(() => {
+    if (idx >= incoming.length) return;
+    const m = { ...incoming[idx], time: 'now' };
+    idx++;
+    body.appendChild(renderChatMessage(m));
+    body.scrollTop = body.scrollHeight;
+    $('#chatCount').textContent = `${230 + Math.floor(Math.random() * 40)} online`;
+  }, 6000);
+})();
+$('#chatSend').onclick = () => {
+  const inp = $('#chatInput');
+  const text = inp.value.trim();
+  if (!text) return;
+  const body = $('#chatBody');
+  body.appendChild(renderChatMessage({ name: 'ShiraaDev', text: text.replace(/</g, '&lt;'), time: 'now', isOwner: true }));
+  body.scrollTop = body.scrollHeight;
+  inp.value = '';
+  lucide.createIcons();
+};
+$('#chatInput').addEventListener('keydown', e => { if (e.key === 'Enter') $('#chatSend').click(); });
+
+/* BUG/SENDER SELECT */
+['bugGridUser', 'bugGridGroup'].forEach(id => {
+  const g = document.getElementById(id);
+  if (!g) return;
+  g.querySelectorAll('.bug-card').forEach(c => c.addEventListener('click', () => {
+    g.querySelectorAll('.bug-card').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+  }));
+});
+['senderGridUser', 'senderGridGroup'].forEach(id => {
+  const g = document.getElementById(id);
+  if (!g) return;
+  g.querySelectorAll('.sender-card').forEach(c => c.addEventListener('click', () => {
+    if (c.dataset.sender === 'pribadi' && c.classList.contains('disabled')) {
+      toast('Sender Pribadi belum tersedia'); return;
+    }
+    g.querySelectorAll('.sender-card').forEach(x => x.classList.remove('active'));
+    c.classList.add('active');
+  }));
+});
+
+function getSelectedBug(id) { const c = document.querySelector(`#${id} .bug-card.active`); return c ? c.dataset.bug : null; }
+function getSelectedSender(id) { const c = document.querySelector(`#${id} .sender-card.active`); return c ? c.dataset.sender : 'global'; }
+function validasiNomor(n) { return /^628\d{7,13}$/.test(n); }
+
+/* SESSION */
+async function cekSession() {
+  const r = await api('/api/sessions');
+  state.sessions = (r.sessions || []);
+  if (state.sessions.length > 0) {
+    if (!state.sessionPhone) {
+      state.sessionPhone = state.sessions[0].phone;
+      localStorage.setItem('sessionPhone', state.sessionPhone);
+    }
+    const p = $('#pribadiStatus');
+    if (p) { p.textContent = '✓ Online'; p.classList.remove('off'); }
+    $('#senderPool').textContent = `${state.sessions.length} aktif`;
+  } else {
+    const p = $('#pribadiStatus');
+    if (p) { p.textContent = 'Belum Tersedia'; p.classList.add('off'); }
+    $('#senderPool').textContent = '0 aktif';
+  }
+  renderPairList(state.sessions);
+  renderReportSenders();
+}
+cekSession();
+
+function renderPairList(sessions) {
+  const el = $('#pairList');
+  if (!el) return;
+  if (!sessions || sessions.length === 0) {
+    el.innerHTML = `<div class="empty-state"><i data-lucide="inbox"></i><p>Belum ada sender terdaftar</p></div>`;
+    lucide.createIcons(); return;
+  }
+  el.innerHTML = sessions.map(s => `
+    <div class="bug-log-item">
+      <div class="bl-icon"><i data-lucide="smartphone"></i></div>
+      <div class="bl-body">
+        <div class="bl-title">${s.phone}</div>
+        <div class="bl-meta"><span><i data-lucide="clock"></i> ${new Date(s.last_seen).toLocaleDateString('id-ID')}</span></div>
+      </div>
+      <div class="bl-status">ONLINE</div>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+
+/* RENDER SENDER UNTUK MASS REPORT */
+function renderReportSenders() {
+  const html = state.sessions.length === 0
+    ? `<div class="empty-state"><i data-lucide="user-x"></i><p>Belum ada sender pribadi. Pairing dulu.</p></div>`
+    : state.sessions.map(s => `
+      <div class="report-sender-item" data-phone="${s.phone}">
+        <div class="rs-ic"><i data-lucide="user"></i></div>
+        <div class="rs-body">
+          <div class="rs-name">${s.phone}</div>
+          <div class="rs-sub">✓ Online • Pribadi</div>
+        </div>
+        <div class="rs-check"><i data-lucide="check"></i></div>
+      </div>
+    `).join('');
+
+  ['#banUserSenders', '#banGroupSenders'].forEach(sel => {
+    const el = $(sel);
+    if (el) el.innerHTML = html;
+  });
+
+  // event klik pilih sender
+  ['#banUserSenders', '#banGroupSenders'].forEach(sel => {
+    const el = $(sel);
+    if (!el) return;
+    el.querySelectorAll('.report-sender-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const parent = item.parentElement;
+        parent.querySelectorAll('.report-sender-item').forEach(x => x.classList.remove('active'));
+        item.classList.add('active');
+        if (sel === '#banUserSenders') state.banUserSender = item.dataset.phone;
+        else state.banGroupSender = item.dataset.phone;
+      });
+    });
+  });
+
+  lucide.createIcons();
+}
+
+/* PAIRING */
+$('#btnPair').onclick = async () => {
+  const phone = $('#pairPhoneInput').value.trim();
+  if (!phone) return toast('Nomor kosong!');
+  const clean = phone.replace(/\D/g, '');
+  if (!/^628\d{7,13}$/.test(clean)) return toast('Format salah!');
+  const r = await api('/api/pair/start', 'POST', { phone: clean });
+  if (!r.ok) return toast('Gagal: ' + r.err);
+  openModal('Pairing Code', `
+    <p style="margin-bottom:10px">Masukkan code ini di WhatsApp <b style="color:#a855f7">${clean}</b>:</p>
+    <div style="font-size:26px;letter-spacing:6px;color:#a855f7;font-weight:900;text-align:center;padding:14px;background:#0e0e11;border-radius:10px;border:1px dashed #a855f7;margin-bottom:12px">${r.pairingCode}</div>
+    <p style="font-size:11px;color:#6b7280">WhatsApp → Perangkat Tertaut → Tautkan dengan nomor telepon.</p>
+    <button class="btn" style="margin-top:14px" onclick="document.getElementById('modal').classList.remove('show')"><i data-lucide="check"></i> Sudah Pairing</button>
+  `);
+  for (let i = 0; i < 20; i++) {
+    await new Promise(r => setTimeout(r, 2000));
+    const cek = await api('/api/sessions');
+    if (cek.ok && cek.sessions.some(s => s.phone === clean)) {
+      cekSession();
+      toast('Sender berhasil di-pairing!');
+      $('#pairPhoneInput').value = '';
+      return;
+    }
+  }
+};
+
+/* KIRIM BUG */
+async function kirimBug(target, bug, sender, tipe) {
+  if (!state.sessionPhone) return toast('Pairing sender dulu di menu Pairing');
+  showCount(target);
+  await new Promise(r => setTimeout(r, 900)); updateCount(2);
+  await new Promise(r => setTimeout(r, 900)); updateCount(1);
+  await new Promise(r => setTimeout(r, 900));
+  $('#countNum').textContent = '⚡';
+  $('#countStatus').innerHTML = '<i data-lucide="loader-2"></i> Mengirim payload...';
+  lucide.createIcons();
+  const r = await api('/api/send', 'POST', { sessionPhone: state.sessionPhone, target, bug, sender, type: tipe });
+  hideCount();
+  if (r.ok) {
+    showSuccess(target, bug, sender);
+    state.hitCount += 1; updateStats();
+    addLog({ target, bug, sender, tipe, status: 'ok', time: Date.now() });
+  } else {
+    addLog({ target, bug, sender, tipe, status: 'fail', err: r.err, time: Date.now() });
+    openModal('Gagal', `<p style="color:#ef4444;font-weight:800;margin-bottom:10px">Gagal Mengirim</p><p style="font-size:11px;color:#6b7280">${r.err || 'Error'}</p><button class="btn sec" style="margin-top:14px" onclick="document.getElementById('modal').classList.remove('show')">Tutup</button>`);
+  }
+}
+
+/* LOG */
+function addLog(entry) {
+  state.logs.unshift(entry);
+  if (state.logs.length > 50) state.logs = state.logs.slice(0, 50);
+  localStorage.setItem('bugLogs', JSON.stringify(state.logs));
+  renderLog();
+}
+function renderLog() {
+  const el = $('#logList');
+  if (!el) return;
+  if (state.logs.length === 0) {
+    el.innerHTML = `<div class="empty-state"><i data-lucide="scroll-text"></i><p>Belum ada riwayat</p></div>`;
+    lucide.createIcons(); return;
+  }
+  el.innerHTML = state.logs.map(l => `
+    <div class="bug-log-item">
+      <div class="bl-icon ${l.status === 'fail' ? 'fail' : ''}"><i data-lucide="${l.status === 'fail' ? 'x' : 'check'}"></i></div>
+      <div class="bl-body">
+        <div class="bl-title">${l.tipe.toUpperCase()} • ${l.bug}</div>
+        <div class="bl-meta">
+          <span><i data-lucide="target"></i> ${l.target}</span>
+          <span><i data-lucide="user"></i> ${l.sender}</span>
+          <span><i data-lucide="clock"></i> ${new Date(l.time).toLocaleTimeString('id-ID', { hour12: false })}</span>
+        </div>
+      </div>
+      <div class="bl-status ${l.status === 'fail' ? 'fail' : ''}">${l.status === 'fail' ? 'FAIL' : 'OK'}</div>
+    </div>
+  `).join('');
+  lucide.createIcons();
+}
+renderLog();
+$('#clearLog').onclick = () => {
+  state.logs = []; localStorage.removeItem('bugLogs'); renderLog(); toast('Log dibersihkan');
+};
+
+/* BUTTONS */
+$('#kirimBtnUser').onclick = () => {
+  const nomor = $('#nomorUser').value.trim();
+  if (!nomor) return toast('Nomor kosong!');
+  if (!validasiNomor(nomor)) return toast('Format 628xxxx');
+  kirimBug(nomor, getSelectedBug('bugGridUser'), getSelectedSender('senderGridUser'), 'bug-user');
+};
+$('#kirimBtnGroup').onclick = () => {
+  const link = $('#groupLink').value.trim();
+  if (!link) return toast('Link kosong!');
+  kirimBug(link, getSelectedBug('bugGridGroup'), getSelectedSender('senderGridGroup'), 'bug-group');
+};
+
+/* RANGE UPDATE */
+$('#banUserCount').oninput = e => $('#banUserCountVal').textContent = e.target.value;
+$('#banUserDelay').oninput = e => $('#banUserDelayVal').textContent = e.target.value + 'ms';
+$('#banGroupCount').oninput = e => $('#banGroupCountVal').textContent = e.target.value;
+$('#banGroupDelay').oninput = e => $('#banGroupDelayVal').textContent = e.target.value + 'ms';
+
+/* MASS REPORT — BAN USER */
+$('#kirimBtnBanUser').onclick = async () => {
+  const target = $('#banUserPhone').value.trim();
+  if (!target) return toast('Nomor target kosong!');
+  if (!validasiNomor(target)) return toast('Format 628xxxx');
+  if (!state.banUserSender) return toast('Pilih sender pribadi dulu!');
+  const count = parseInt($('#banUserCount').value, 10);
+  const delayMs = parseInt($('#banUserDelay').value, 10);
+  showCount(`${count}x → ${target}`);
+  await new Promise(r => setTimeout(r, 900)); updateCount(2);
+  await new Promise(r => setTimeout(r, 900)); updateCount(1);
+  await new Promise(r => setTimeout(r, 900));
+  const r = await api('/api/report', 'POST', {
+    senderPhone: state.banUserSender,
+    target, targetType: 'user', count, delayMs
+  });
+  hideCount();
+  if (r.ok) {
+    showSuccess(`${target} (${count}x)`, 'BAN-USER', 'pribadi');
+    addLog({ target, bug: 'mass-report', sender: 'pribadi', tipe: 'ban-user', status: 'ok', time: Date.now() });
+  } else {
+    addLog({ target, bug: 'mass-report', sender: 'pribadi', tipe: 'ban-user', status: 'fail', err: r.err, time: Date.now() });
+    openModal('Gagal', `<p style="color:#ef4444;font-weight:800">${r.err}</p>`);
+  }
+};
+
+/* MASS REPORT — BAN GROUP */
+$('#kirimBtnBanGroup').onclick = async () => {
+  const target = $('#banGroupLink').value.trim();
+  if (!target) return toast('Link group kosong!');
+  if (!state.banGroupSender) return toast('Pilih sender pribadi dulu!');
+  const count = parseInt($('#banGroupCount').value, 10);
+  const delayMs = parseInt($('#banGroupDelay').value, 10);
+  showCount(`${count}x → group`);
+  await new Promise(r => setTimeout(r, 900)); updateCount(2);
+  await new Promise(r => setTimeout(r, 900)); updateCount(1);
+  await new Promise(r => setTimeout(r, 900));
+  const r = await api('/api/report', 'POST', {
+    senderPhone: state.banGroupSender,
+    target, targetType: 'group', count, delayMs
+  });
+  hideCount();
+  if (r.ok) {
+    showSuccess(target, 'BAN-GROUP', 'pribadi');
+    addLog({ target, bug: 'mass-report', sender: 'pribadi', tipe: 'ban-group', status: 'ok', time: Date.now() });
+  } else {
+    addLog({ target, bug: 'mass-report', sender: 'pribadi', tipe: 'ban-group', status: 'fail', err: r.err, time: Date.now() });
+    openModal('Gagal', `<p style="color:#ef4444;font-weight:800">${r.err}</p>`);
+  }
+};
+
+/* NOTIF & MENU */
+$('#notifBtn').onclick = () => {
+  openModal('Notifikasi', `
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="padding:10px;background:#0e0e11;border-radius:10px;border-left:3px solid #a855f7"><p style="font-size:12px;font-weight:700;margin-bottom:2px">Selamat datang di Shix</p><p style="font-size:11px;color:#6b7280">Akun ShiraaDev berhasil diaktivasi.</p></div>
+      <div style="padding:10px;background:#0e0e11;border-radius:10px;border-left:3px solid #22c55e"><p style="font-size:12px;font-weight:700;margin-bottom:2px">Masa Aktif Premium</p><p style="font-size:11px;color:#6b7280">Berlaku sampai 30 Desember 2099.</p></div>
+    </div>
+  `);
+};
+$('#menuBtn').onclick = () => {
+  openModal('Menu', `
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <button class="btn sec" onclick="localStorage.clear();location.reload()"><i data-lucide="log-out"></i> Reset Session</button>
+      <button class="btn sec" onclick="document.getElementById('modal').classList.remove('show')"><i data-lucide="x"></i> Tutup</button>
+    </div>
+  `);
+};
+
+lucide.createIcons();
+</script>
+</body>
+</html>
